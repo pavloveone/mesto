@@ -1,0 +1,7 @@
+.element-container {
+    display: flex;
+    padding-left: 21px;
+    max-width: 246px;
+    align-items: baseline;
+    justify-content: space-between;
+}

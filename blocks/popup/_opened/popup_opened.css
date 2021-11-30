@@ -1,0 +1,4 @@
+.popup_opened {
+    display: flex;
+    max-width: 1280px;
+}

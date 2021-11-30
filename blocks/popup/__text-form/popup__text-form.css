@@ -1,0 +1,21 @@
+.popup__text-form {
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+    padding-left: 36px;
+    padding-bottom: 48px;
+    font-family: 'Inter', 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 16.94px;
+    font-weight: 400;
+    color: #000000;
+}
+
+@media screen and (max-width: 425px) {
+    .popup__text-form {
+        align-items: center;
+        padding: 0;
+        padding-top: 75px;
+        padding-bottom: 45px;
+    }
+}
