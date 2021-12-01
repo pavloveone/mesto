@@ -1,4 +1,4 @@
-.profile-info__title {
+.profile__info-title {
     margin: 0;
     padding-top: 22px;
     padding-bottom: 16px;
@@ -14,11 +14,12 @@
     white-space: nowrap;
 }
 
-@media screen and (max-width: 425px) {
-    .profile-info__title {
+@media screen and (max-width: 585px) {
+    .profile__info-title {
         font-size: 27px;
         line-height: 33px;
         text-align: center;
         padding-bottom: 14px;
+        max-width: 189px;
     }
 }
