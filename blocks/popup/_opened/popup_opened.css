@@ -1,4 +1,7 @@
 .popup_opened {
     display: flex;
     max-width: 1280px;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s, opacity 1s linear;
 }
