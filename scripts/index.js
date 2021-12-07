@@ -47,7 +47,7 @@ const linkInput = popupCard.querySelector('input[name=link]');
 const popupImage = document.querySelector('#popup-image');
 const popupFigure = popupImage.querySelector('.popup-image__figure');
 const popupCaption = popupImage.querySelector('.popup-image__caption');
-const closePopupImage = popupImage.querySelector('#popup__btn-close');
+const closePopupImage = popupImage.querySelector('.popup__btn-close');
 
 function renderCard() {                                                               //рендер элементов массива карточек
     const cardHTML = initialCards

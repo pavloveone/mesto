@@ -1,6 +1,6 @@
 .popup-image__figure {
-    max-width: 75vw;
-    max-height: 75vh;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: cover;
 }
 
