@@ -16,8 +16,10 @@
         <button type="button" class="popup__btn-close"></button>
         <h2 class="popup__title">Редактировать профиль</h2>
         <div class="popup__text-form">
-          <input class="popup__input" value="" name="name" type="text" placeholder="Введите имя">
-          <input class="popup__input" value="" name="job" type="text" placeholder="Введите описание">
+          <input class="popup__input popup__input_type_error" value="" name="name" type="text" placeholder="Введите имя" required minlength="2" maxlength="200" id="name-profile">
+          <span class="error" id="name-profile-error"></span>
+          <input class="popup__input popup__input_type_error" value="" name="job" type="text" placeholder="Введите описание" required minlength="2" maxlength="200" id="job-profile">
+          <span class="error" id="job-profile-error"></span>
         </div>
         <button type="submit" class="popup__btn-save">Сохранить</button>
       </form>
@@ -28,8 +30,10 @@
         <button type="button" class="popup__btn-close"></button>
         <h2 class="popup__title">Новое место</h2>
         <div class="popup__text-form">
-          <input class="popup__input" value="" name="place" type="text" placeholder="Название места">
-          <input class="popup__input" value="" name="link" type="text" placeholder="Ссылка на картинку">
+          <input class="popup__input popup__input_type_error" value="" name="place" type="text" placeholder="Название места" required type="text" id="place-card">
+          <span class="error" id="place-card-error"></span>
+          <input class="popup__input popup__input_type_error" value="" name="link" type="text" placeholder="Ссылка на картинку" required type="url" id="link-card">
+          <span class="error" id="link-card-error"></span>
         </div>
         <button type="submit" class="popup__btn-save">Создать</button>
       </form>
@@ -79,6 +83,7 @@
     </template>
 
     <script src="./scripts/index.js"></script>
+    <script src="./scripts/validate.js"></script>
     
 </body>
 </html>
