@@ -74,7 +74,7 @@ function getCard(card) {                                                        
         evt.target.classList.toggle('element__like-button_active');
     });
     const removeCardBtn = newCard.querySelector('.element__del-button');            // удаление
-    removeCardBtn.addEventListener('click', handlerRemoveCard);
+    removeCardBtn.addEventListener('click', handleRemoveCard);
     
     cardImage.addEventListener('click', () => {                                    // попап с изображением
         popupCaption.textContent = card.name;
@@ -92,7 +92,7 @@ function openPopup(evt) {
 }
 function closePopup(evt) {
     evt.classList.remove('popup_opened');                                           // функция закрытия попапа
-    document.addEventListener('keydown', closePopupEsc);
+    document.removeEventListener('keydown', closePopupEsc);
 }
 
 function closePopupEsc(evt) {                                                  //функция закрытия попапа esc
@@ -102,7 +102,7 @@ function closePopupEsc(evt) {                                                  /
     }
 }
 
-function handlerFormSubmit (evt) {                                                   // функция редактирования профиля
+function handleProfileFormSubmit (evt) {                                                   // функция редактирования профиля
     evt.preventDefault();
     nameProfile.textContent = nameInput.value;
     jobProfile.textContent = jobInput.value;
@@ -110,7 +110,7 @@ function handlerFormSubmit (evt) {                                              
 }
 
 
-function handlerAddCard(evt) {                                                      // функция добавления места
+function handleAddCard(evt) {                                                      // функция добавления места
     evt.preventDefault();
     const placeText = placeInput.value;
     const linkText = linkInput.value;
@@ -122,7 +122,7 @@ function handlerAddCard(evt) {                                                  
 }
 
 
-function handlerRemoveCard(evt) {                                                 // функция удаления элемента
+function handleRemoveCard(evt) {                                                 // функция удаления элемента
     const targetEl = evt.target;
     const item = targetEl.closest('.element');
     item.remove();
@@ -138,9 +138,10 @@ closePopupProfile.addEventListener('click', () => {
     closePopup(popupProfile);
 });
 
-popupProfileForm.addEventListener('submit', handlerFormSubmit);
+popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 
 openPopupCard.addEventListener('click', () => {
+    saveButton.setAttribute('disabled', 'disabled');
     saveButton.classList.add('popup__btn-save_disabled');
     openPopup(popupCard);
 });
@@ -153,7 +154,7 @@ closePopupImage.addEventListener('click', () => {
     closePopup(popupImage);
 });
 
-popupCardForm.addEventListener('submit', handlerAddCard);
+popupCardForm.addEventListener('submit', handleAddCard);
 
 popupProfileOverlay.addEventListener('click', () => closePopup(popupProfile));
 
