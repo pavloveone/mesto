@@ -74,9 +74,9 @@ function renderCard() {                                                         
 renderCard();
 
 function handleImageOpen(name, link) {                                      // попап с изображением
-    document.querySelector('.popup-image__caption').textContent = name;
-    document.querySelector('.popup-image__figure').src = link;
-    document.querySelector('.popup-image__figure').alt = name;
+    popupCaption.textContent = name;
+    popupFigure.src = link;
+    popupFigure.alt = name;
     openPopup(popupImage);
 };
 
@@ -128,8 +128,6 @@ closePopupProfile.addEventListener('click', () => {
 popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 
 openPopupCard.addEventListener('click', () => {
-    saveButton.setAttribute('disabled', 'disabled');
-    saveButton.classList.add('popup__btn-save_disabled');
     openPopup(popupCard);
 });
 
@@ -161,6 +159,7 @@ const enableValidation = ({
 
 const validateProfilePopup = new FormValidator(enableValidation, popupProfile);
 const validateCardPopup = new FormValidator(enableValidation, popupCard);
+validateCardPopup.resetValidation();
 validateProfilePopup.enableValidation();
 validateCardPopup.enableValidation();
 
