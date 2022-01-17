@@ -129,6 +129,7 @@ popupProfileForm.addEventListener('submit', handleProfileFormSubmit);
 
 openPopupCard.addEventListener('click', () => {
     openPopup(popupCard);
+    validateCardPopup.resetValidation();
 });
 
 closePopupCard.addEventListener('click', () => {
