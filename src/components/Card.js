@@ -1,9 +1,9 @@
 class Card {
-    constructor(selector, name, link, handleImageOpen) {
+    constructor(selector, {name, link}, handleCardClick) {
         this._selector = selector;
         this._name = name;
         this._link = link;
-        this._handleImageOpen = handleImageOpen;
+        this._handleCardClick = handleCardClick;
     }
 
     _getCard() {
@@ -37,9 +37,7 @@ class Card {
 
         this._element.querySelector('.element__del-button').addEventListener('click', this._deleteButton);
         
-        this._elementImage.addEventListener('click', () => {
-            this._handleImageOpen(this._name, this._link)
-        });
+        this._elementImage.addEventListener('click', this._handleCardClick);
     }
 }
 
