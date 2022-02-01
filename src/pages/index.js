@@ -46,18 +46,13 @@ function getCard(card) {
 
 cardList.renderer();
 
-// function handleImageOpen(name, link) {                                      // попап с изображением
-//     popupCaption.textContent = name;
-//     popupFigure.src = link;
-//     popupFigure.alt = name;
-//     openPopup(popupImage);
-// };
+
 
 const user = new UserInfo({ name: '.profile__info-title', job: '.profile__info-subtitle' });
 const formProfile = new PopupWithForm({
     selector: '#popup-profile',
     handleFormSubmit: (data) => {
-        user.SetUserInfo(data);
+        user.setUserInfo(data);
         formProfile.close(); 
     }
 });
@@ -89,6 +84,13 @@ openPopupCard.addEventListener('click', () => {
     formCard.open();
     validateCardPopup.resetValidation();
 });
+
+// function handleImageOpen(name, link) {                                      // попап с изображением
+//     popupCaption.textContent = name;
+//     popupFigure.src = link;
+//     popupFigure.alt = name;
+//     openPopup(popupImage);
+// };
 
 // const templateCard = document.querySelector('.template');
 
