@@ -2,7 +2,7 @@
   "name": "mesto",
   "version": "0.0.1",
   "description": "* О чём?\r * Какие техники использованы?\r * Можно лучше?",
-  "main": "index.js",
+  "main": "pages/index.js",
   "scripts": {
     "build": "webpack --mode production",
     "dev": "webpack serve",
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/pavloveone/mesto.git"
+    "url": "git@github.com:pavloveone/mesto.git"
   },
   "author": "Pavlov Alex",
   "license": "ISC",

@@ -34,8 +34,7 @@
           headers: this._headers,
           body: JSON.stringify ({
               name: data.name,
-              about: data.job,
-                 
+              about: data.job,     
               })
        })
        .then(this._handleResponse); 
