@@ -26,10 +26,13 @@
 @import url(../blocks/element/__image/element__image.css);
 @import url(../blocks/element/__container-title/element__container-title.css);
 @import url(../blocks/element/__like-button/element__like-button.css);
+@import url(../blocks/element/__text/element__text.css);
+@import url(../blocks/popup/__title/_confirm/popup__title_confirm.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/element/__like-button/_active/element__like-button_active.css);
 @import url(../blocks/element/__del-button/element__del-button.css);
+@import url(../blocks/element/__del-button/_hide/element__del-button_hide.css);
 @import url(../blocks/popup-image/popup-image.css);
 @import url(../blocks/popup-image/__figure/popup-image__fugire.css);
 @import url(../blocks/popup-image/__caption/popup-image__caption.css);

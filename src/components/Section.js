@@ -1,17 +1,20 @@
 class Section {
-    constructor({ items, renderer }, selector) {
-        this._items = items;
+    constructor({ renderer }, selector) {
         this._renderer = renderer;
         this._container = selector;
     }
 
-    renderer() {
-        this._items.map( item  => {
+    renderer(items) {
+        items.map( item  => {
             this._renderer(item);
         });
     }
 
     addItem(element) {
+        this._container.prepend(element);
+    }
+
+    setItem(element) {
         this._container.prepend(element);
     }
 }

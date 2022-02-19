@@ -3,4 +3,10 @@
     max-height: 120px;
     border-radius: 120px;
     object-fit: cover;
+    opacity: 1;
+}
+
+.profile__avatar:hover {
+    opacity: 0.3;
+    cursor: url('../../../images/edit.svg'), auto;
 }

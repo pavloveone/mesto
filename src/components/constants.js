@@ -1,29 +1,29 @@
-const initialCards = [                                                            //массив карточек
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
+// const initialCards = [                                                            //массив карточек
+//     {
+//         name: 'Архыз',
+//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+//     },
+//     {
+//         name: 'Челябинская область',
+//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+//     },
+//     {
+//         name: 'Иваново',
+//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+//     },
+//     {
+//         name: 'Камчатка',
+//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+//     },
+//     {
+//         name: 'Холмогорский район',
+//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+//     },
+//     {
+//         name: 'Байкал',
+//         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+//     }
+// ];
 
 const enableValidation = ({
     formSelector: '.popup',
@@ -42,9 +42,10 @@ const popupCard = document.querySelector('#popup-card');
 const popupProfileForm = popupProfile.querySelector('.popup');
 const nameInput = popupProfileForm.querySelector('input[name=name]');
 const jobInput = popupProfileForm.querySelector('input[name=job]');
+const avatar = document.querySelector('.profile__avatar');
+const element = document.querySelector('.element__image');
 
 export { 
-    initialCards,
     enableValidation,
     cardsContainer,
     openPopupProfile,
@@ -53,5 +54,7 @@ export {
     popupCard,
     jobInput,
     nameInput,
-    popupProfileForm
+    popupProfileForm,
+    avatar,
+    element
 };

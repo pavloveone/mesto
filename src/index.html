@@ -50,6 +50,28 @@
         </figure>
     </div>
 
+    <div class="popup-blackout" id="popup-confirm">
+      <div class="popup-overlay" id="confirm-overlay"></div>
+      <form class="popup">
+        <button type="button" class="popup__btn-close"></button>
+        <h2 class="popup__title popup__title_confirm">Вы уверены?</h2>
+        <button type="button" class="popup__btn-save">Да</button>
+      </form>
+    </div>
+
+    <div class="popup-blackout" id="popup-avatar">
+      <div class="popup-overlay" id="avatar-overlay"></div>
+        <form action="#" class="popup">
+          <button type="button" class="popup__btn-close"></button>
+          <h2 class="popup__title">Обновить аватар</h2>
+          <div class="popup__text-form">
+            <input type="url" id="link-avatar" class="popup__input" value="" name="avatar" placeholder="Ссылка на новый аватар" required>
+            <span class="error" id="link-avatar-error"></span>
+          </div>
+          <button type="submit" class="popup__btn-save" disabled id="popup-card-btn-save">Сохранить</button>
+        </form>
+    </div>
+
     <header class="header">
       <img src="<%=require('./images/header__logo.svg')%>" class="header__logo" alt="Логотип">
     </header>
@@ -81,6 +103,7 @@
           <h3 class="element__container-title"></h3>
           <button class="element__like-button" type="button"></button>
         </div>
+        <p class="element__text">0</p>
         <button class="element__del-button" type="button"></button>
       </li>
     </template>
