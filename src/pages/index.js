@@ -109,7 +109,7 @@ function getCard(formData) {
                 card.deleteButton();
                 popupConfirmation.close()
             })
-            // .catch(err => console.log(`del card error: ${err}`))
+            .catch(err => console.log(`del card error: ${err}`))
         })
     };
 
@@ -176,7 +176,7 @@ Promise.all([getInfo, getCards])
          }) 
          cardList.renderItems(cards);
      })
-    //  .catch(err => {console.log(`data load error: ${err}`)});
+     .catch(err => {console.log(`data load error: ${err}`)});
 
 openPopupProfile.addEventListener('click', () => {
     const inputs = user.getUserInfo()
