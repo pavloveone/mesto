@@ -114,7 +114,7 @@ function getCard(formData) {
     };
 
     const handleLikeCard = () => {
-        if(!card.getIsLike()) {
+        if (!card.getIsLike()) {
             api.putLikes(card._id)
             .then(res => {
                 card.likeCard(res);
@@ -129,7 +129,7 @@ function getCard(formData) {
         }
     };
 
-    const card = new Card('.template', {formData}, handleCardClick, handleDeleteCard, user.getId(), handleLikeCard);
+    const card = new Card('.template', { formData }, handleCardClick, handleDeleteCard, user.getId(), handleLikeCard);
     const cardElement = card.getView();
     return cardElement;
 };
@@ -167,7 +167,7 @@ const getCards =
     .catch(err => console.log(`cards load error: ${err}`));
 
 Promise.all([getInfo, getCards])
-     .then(([userData, cards])=> {
+     .then(([userData, cards]) => {
          user.setUserInfo({
              name: userData.name,
              job: userData.about,
@@ -176,7 +176,7 @@ Promise.all([getInfo, getCards])
          }) 
          cardList.renderItems(cards);
      })
-     .catch(err => console.log(`data load error: ${err}`));
+    //  .catch(err => {console.log(`data load error: ${err}`)});
 
 openPopupProfile.addEventListener('click', () => {
     const inputs = user.getUserInfo()
