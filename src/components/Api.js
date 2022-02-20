@@ -6,10 +6,10 @@ class Api {
       
     getInitialCards() {
         return fetch(`${this._address}/cards`, {
-        _headers: this._headers
+            headers: this._headers
         })
-          .then(this._handleResponse);
-        }
+        .then(this._handleResponse);
+    }
 
     _handleResponse(res) {
         if (res.ok) {

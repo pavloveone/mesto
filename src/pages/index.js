@@ -21,7 +21,7 @@ import './index.css';
 
 const validateProfilePopup = new FormValidator(enableValidation, popupProfile);
 const validateCardPopup = new FormValidator(enableValidation, popupCard);
-const validateAvatarPopup = new FormValidator(enableValidation, popupAvatar)
+const validateAvatarPopup = new FormValidator(enableValidation, ava)
 validateCardPopup.resetValidation();
 validateProfilePopup.enableValidation();
 validateCardPopup.enableValidation();
