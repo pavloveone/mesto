@@ -106,10 +106,10 @@ function getCard(formData) {
         popupConfirmation.setSubmitAction(() => {
             api.delCard(card._id)
             .then(res => {
-                card.delCard();
+                card.deleteButton();
                 popupConfirmation.close()
             })
-            .catch(err => console.log(`del card error: ${err}`))
+            // .catch(err => console.log(`del card error: ${err}`))
         })
     };
 
