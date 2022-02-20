@@ -85,7 +85,7 @@ const formCard = new PopupWithForm({
         formCard.renderLoading(true)
         api.addCard(data)
         .then(res => {
-            cardList.addItem(getCard({...res, id: res._id}));
+            cardList.setItem(getCard({...res, id: res._id}));
             formCard.close();
         })
         .catch(err => console.log(`card add error: ${err}`))
@@ -129,15 +129,15 @@ function getCard(formData) {
         }
     };
 
-    const card = new Card('.template', {formData}, handleCardClick, handleDeleteCard, user._getId(), handleLikeCard);
+    const card = new Card('.template', {formData}, handleCardClick, handleDeleteCard, user.getId(), handleLikeCard);
     const cardElement = card.getView();
     return cardElement;
 };
 
 const cardList = new Section({                                                               //рендер элементов массива карточек
     renderer: (item) => {
-        const cardHTML = getCard(item);
-        cardList.setItem(cardHTML);
+        const card = getCard(item);
+        cardList.setItem(card);
     }
 }, 
 cardsContainer);
@@ -174,7 +174,7 @@ Promise.all([getInfo, getCards])
              avatar: userData.avatar,
              id: userData._id
          }) 
-         cardList.rendererItems(cards);
+         cardList.renderItems(cards);
      })
      .catch(err => console.log(`data load error: ${err}`));
 

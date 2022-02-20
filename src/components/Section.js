@@ -4,7 +4,7 @@ class Section {
         this._container = selector;
     }
 
-    rendererItems(items) {
+    renderItems(items) {
         items.map( item  => {
             this._renderer(item);
         });
