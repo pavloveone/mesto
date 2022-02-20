@@ -1,16 +1,18 @@
 class Card {
-    constructor(selector, {data}, handleCardClick, handleDeleteCard, handleLikeCard, userId) {
+    constructor(selector, {formData}, handleCardClick, handleDeleteCard, handleLikeCard, userId) {
         this._selector = selector;
-        this._name = data.ame;
-        this._link = data.link;
-        this._id = data._id;
-        this._likes = data.likes.length;
+        this._name = formData.name;
+        this._link = formData.link;
+        this._id = formData._id;
+        this._likes = formData.likes.length;
         this._handleCardClick = handleCardClick;
         this._handleDeleteCard = handleDeleteCard;
         this._handleLikeCard = handleLikeCard;
-        this._cardOwnerId = data.owner._id;
+
+        this._cardOwnerId = formData.owner._id;
         this._userId = userId;
-        this._isLikeId = data.likes;
+
+        this._isLikeId = formData.likes;
         this._isLike = this._isLikesId.some((item) => {
             return item._id === this._userId;
         });
@@ -21,10 +23,6 @@ class Card {
             .content
             .querySelector('.element')
             .cloneNode(true)
-    }
-
-    _likeButton = () => {
-        this._like.classList.toggle('element__like-button_active');
     }
 
     deleteButton = () => {
@@ -41,6 +39,7 @@ class Card {
         this._delButton = this._element.querySelector('.element__del-button');
         this._countLikes = this._element.querySelector('.element__text');
         this._countLikes.textContent = this._likes;
+        this._setEventListeners();
 
         if (this._cardOwnerId !== this._userId) {
                 this._delButton.classList.add('element__del-button_hide')
@@ -49,11 +48,10 @@ class Card {
         if (this._isLike) { 
             this._like.classList.add('element__like-button_active')
          }
-        this._setEventListeners();
         return this._element;
     }
 
-    likeCard (data) {
+    likeCard (formData) {
         this._countLikes.textContent = formData.likes.length;
         this._isLike = !this._isLike;
         if (this._isLike) { 
@@ -72,7 +70,7 @@ class Card {
     _setEventListeners() {
         this._like.addEventListener('click', this._handleLikeCard);
 
-        this._delButton.querySelector('.element__del-button').addEventListener('click', this._handleDeleteCard);
+        this._delButton.addEventListener('click', this._handleDeleteCard);
         
         this._elementImage.addEventListener('click', this._handleCardClick);
     }

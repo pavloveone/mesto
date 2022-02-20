@@ -13,11 +13,11 @@ class UserInfo {
         return infoInputs;
     }
 
-    setUserInfo(data) {
-        this._name.textContent = data.name;
-        this._job.textContent = data.job;
-        this._userId = data._id;
-        this._avatar.src = data.avatar;
+    setUserInfo(formData) {
+        this._name.textContent = formData.name;
+        this._job.textContent = formData.job;
+        this._userId = formData.id;
+        this._avatar.src = formData.avatar;
     }
 
     getId() {

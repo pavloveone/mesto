@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
 class PopupConfirm extends Popup {
-    constructor({selector, handleDeleteCard}) {
+    constructor(selector) {
         super(selector);
         this._confirmButton = this._popup.querySelector('.popup__btn-save');
     }
@@ -12,7 +12,7 @@ class PopupConfirm extends Popup {
     }
 
     setSubmitAction(func) {
-        this._handleCardDelete = func;
+        this._handleDeleteCard = func;
 
     }
 

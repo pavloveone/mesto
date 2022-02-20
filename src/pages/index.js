@@ -4,8 +4,8 @@ import Section from '../components//Section.js';
 import PopupWithImage from '../components//PopupWithImage.js';
 import PopupWithForm from '../components//PopupWithForm.js';
 import UserInfo from '../components//UserInfo.js';
-import PopupConfirm from '../components/PopupConfirm.js';
 import Api from '../components/Api.js';
+import PopupConfirm from '../components/PopupConfirm.js';
 import {
     enableValidation,
     cardsContainer,
@@ -14,7 +14,8 @@ import {
     popupProfile,
     openPopupProfile,
     popupCard,
-    openPopupCard
+    openPopupCard,
+    avatar
 } from '../utils/constants.js';
 import './index.css';
 
@@ -26,65 +27,40 @@ validateProfilePopup.enableValidation();
 validateCardPopup.enableValidation();
 validateAvatarPopup.enableValidation();
 
-const cardList = new Section({                                                               //рендер элементов массива карточек
-    renderer: (item) => {
-        const cardHTML = getCard(item);
-        cardList.addItem(cardHTML);
-    }
-}, 
-cardsContainer);
-
 const popupImage = new PopupWithImage('#popup-image');
 popupImage.setEventListeners();
 
-function getCard(data) {
-    const handleCardClick = () => {
-        popupImage.open(data);
-    };
+const popupConfirmation = new PopupConfirm('#popup-confirm');
+popupConfirmation.setEventListeners();
 
-    const handleDeleteCard = () => {
-        popupConfirmation.open(data);
-        popupConfirmation.setSubmitAction(() => {
-            api.delCard(card._id)
-            .then(res => {
-                card.delCard();
-                popupConfirmation.close()
-            })
-            .catch(err => console.log(`del card error: ${err}`))
+const popupAvatar = new PopupWithForm({
+    selector: '#popup-avatar',
+    handleFormSubmit: (formData) => {
+        popupAvatar.renderLoading(true)
+        api.avatarProfile(formData)
+        .then(res => {
+            const profile = {
+                name: res.name,
+                job: res.about,
+                avatar: res.avatar,
+                id: res._id
+            }
+            user.setUserInfo(profile);
+            popupAvatar.close();
         })
-    };
+        .catch(err => console.log(`card del error: ${err}`))
+        .finally(() => {
+            popupAvatar.renderLoading(false)
+        })
+    }
+});
+popupAvatar.setEventListeners();
 
-    const handleLikeCard = () => {
-        if(!card.getIsLike()) {
-            api.putLike(card._id)
-            .then(res => {
-                card.likeCard(res);
-            })
-            .catch(err => console.log(`don't put a like: ${err}`))
-        } else {
-            api.delLike(card._id)
-            .then(res => {
-                card.likeCard(res);
-            })
-            .catch(err => console.log(`don't clear a like: ${err}`))
-        }
-    };
-
-    const card = new Card('.template', {data}, handleCardClick, handleDeleteCard, user._getId(), handleLikeCard);
-    const cardElement = card.getView();
-    return cardElement;
-}
-
-cardList.renderer();
-
-
-
-const user = new UserInfo({ name: '.profile__info-title', job: '.profile__info-subtitle', avatar: '.profile__avatar' });
 const formProfile = new PopupWithForm({
     selector: '#popup-profile',
-    handleFormSubmit: (data) => {
+    handleFormSubmit: (formData) => {
         formProfile.renderLoading(true)
-        api.editProfile(data)
+        api.editProfile(formData)
         .then(res => {
             const profile = {
                 name: res.name,
@@ -120,48 +96,53 @@ const formCard = new PopupWithForm({
 });
 formCard.setEventListeners();
 
-const popupConfirmation = new PopupConfirm('#popup-confirm');
-popupConfirmation.setEventListeners();
+function getCard(formData) {
+    const handleCardClick = () => {
+        popupImage.open(formData);
+    };
 
-const popupAvatar = new PopupWithForm({
-    selector: '#popup-avatar',
-    handleFormSubmit: (data) => {
-        popupAvatar.renderLoading(true)
-        api.avatarProfile(data)
-        .then(res => {
-            const profile = {
-                name: res.name,
-                job: res.about,
-                avatar: res.avatar,
-                id: res._id
-            }
-            user.setUserInfo(profile);
-            popupAvatar.close();
+    const handleDeleteCard = () => {
+        popupConfirmation.open(formData);
+        popupConfirmation.setSubmitAction(() => {
+            api.delCard(card._id)
+            .then(res => {
+                card.delCard();
+                popupConfirmation.close()
+            })
+            .catch(err => console.log(`del card error: ${err}`))
         })
-        .catch(err => console.log(`card del error: ${err}`))
-        .finally(() => {
-            popupAvatar.renderLoading(false)
-        })
+    };
+
+    const handleLikeCard = () => {
+        if(!card.getIsLike()) {
+            api.putLikes(card._id)
+            .then(res => {
+                card.likeCard(res);
+            })
+            .catch(err => console.log(`don't put a like: ${err}`))
+        } else {
+            api.delLikes(card._id)
+            .then(res => {
+                card.likeCard(res);
+            })
+            .catch(err => console.log(`don't clear a like: ${err}`))
+        }
+    };
+
+    const card = new Card('.template', {formData}, handleCardClick, handleDeleteCard, user._getId(), handleLikeCard);
+    const cardElement = card.getView();
+    return cardElement;
+};
+
+const cardList = new Section({                                                               //рендер элементов массива карточек
+    renderer: (item) => {
+        const cardHTML = getCard(item);
+        cardList.setItem(cardHTML);
     }
-});
-popupAvatar.setEventListeners();
+}, 
+cardsContainer);
 
-openPopupProfile.addEventListener('click', () => {
-    const inputs = user.getUserInfo()
-    nameInput.value = inputs.nameInput;
-    jobInput.value = inputs.jobInput;
-    formProfile.open();
-});
-
-openPopupCard.addEventListener('click', () => {
-    formCard.open();
-    validateCardPopup.resetValidation();
-});
-
-avatar.addEventListener('click', () => {
-    popupAvatar.open();
-    validateAvatarPopup.resetValidation();
-})
+const user = new UserInfo({ name: '.profile__info-title', job: '.profile__info-subtitle', avatar: '.profile__avatar' });
 
 const api = new Api({
     address: 'https://mesto.nomoreparties.co/v1/cohort-35',
@@ -192,10 +173,27 @@ Promise.all([getInfo, getCards])
              job: userData.about,
              avatar: userData.avatar,
              id: userData._id
-         })
-         cardList.renderer(cards);
+         }) 
+         cardList.rendererItems(cards);
      })
      .catch(err => console.log(`data load error: ${err}`));
+
+openPopupProfile.addEventListener('click', () => {
+    const inputs = user.getUserInfo()
+    nameInput.value = inputs.nameInput;
+    jobInput.value = inputs.jobInput;
+    formProfile.open();
+});
+
+openPopupCard.addEventListener('click', () => {
+    formCard.open();
+    validateCardPopup.resetValidation();
+});
+
+avatar.addEventListener('click', () => {
+    popupAvatar.open();
+    validateAvatarPopup.resetValidation();
+});
 
 // function handleImageOpen(name, link) {                                      // попап с изображением
 //     popupCaption.textContent = name;

@@ -1,34 +1,33 @@
-
-    class Api {
-        constructor({address, headers}) {
-          this._address = address;
-          this._headers = headers;
+class Api {
+    constructor({address, headers}) {
+        this._address = address;
+        this._headers = headers;
         }
       
-        getInitialCards() {
-          return fetch(`${this._address}/cards`, {
-            _headers: this._headers
-          })
+    getInitialCards() {
+        return fetch(`${this._address}/cards`, {
+        _headers: this._headers
+        })
           .then(this._handleResponse);
         }
 
-        _handleResponse(res) {
-          if (res.ok) {
-              return res.json();
-          }
+    _handleResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
           return Promise.reject(`Ошибка: ${res.status}`)
   
-      }
+    }
   
-      getProfileInfo() {
-          return fetch(`${this._address}/users/me`, {
-              headers: this._headers
+    getProfileInfo() {
+        return fetch(`${this._address}/users/me`, {
+            headers: this._headers
           })
-          .then(this._handleResponse);
+        .then(this._handleResponse);
       
-      }
+    }
   
-      editProfile(data) {
+    editProfile(data) {
        return fetch(`${this._address}/users/me`, {
           method: 'PATCH',
           headers: this._headers,
@@ -39,10 +38,9 @@
        })
        .then(this._handleResponse); 
    
-      }
+    }
   
-      // отправляем информацию об изменении аватара
-      avatarProfile(data) {
+    avatarProfile(data) {
        return fetch(`${this._address}/users/me/avatar`, {
           method: 'PATCH',
           headers: this._headers,
@@ -52,23 +50,23 @@
        })
        .then(this._handleResponse); 
    
-      }
+    }
 
-        addCard(data) {
-          return fetch(`${this._address}/cards`, {
-              method: 'POST',
-              headers: this._headers,
-              body: JSON.stringify ({
-                  name: data.mesto,
-                  link: data.link,
-                  id: data.id
+    addCard(data) {
+        return fetch(`${this._address}/cards`, {
+            method: 'POST',
+            headers: this._headers,
+            body: JSON.stringify ({
+                name: data.mesto,
+                link: data.link,
+                id: data.id
               })
           })
           .then(this._handleResponse);
      
-       }
+    }
 
-       delCard(id) {
+    delCard(id) {
         return fetch(`${this._address}/cards/${id}`, {
            method: 'DELETE',
            headers: this._headers
@@ -77,7 +75,7 @@
 
     }
 
-    putLike(id) {
+    putLikes(id) {
        return fetch(`${this._address}/cards/${id}/likes`, {
            method: 'PUT',
            headers: this._headers
@@ -86,12 +84,13 @@
        
     }
 
-    delLike(id) {
-       return fetch(`${this._address}/cards/${id}/likes`, {
-           method: 'DELETE',
-           headers: this._headers
-       })
-       .then(this._handleResponse)
-       
+    delLikes(id) {
+    return fetch(`${this._address}/cards/${id}/likes`, {
+        method: 'DELETE',
+        headers: this._headers
+        })
+    .then(this._handleResponse)  
     }
-      }
+}
+
+export default Api;
